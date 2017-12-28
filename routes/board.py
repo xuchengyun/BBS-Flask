@@ -16,14 +16,18 @@ main = Blueprint('board', __name__)
 
 @main.route("/admin")
 def index():
-    return render_template('board/admin_index.html')
-    ...
+    u = current_user()
+    if u.role == 1:
+        return render_template('board/admin_index.html')
+    else:
+        return redirect(url_for('topic.index'))
 
 
 @main.route("/add", methods=["POST"])
 def add():
     form = request.form
     u = current_user()
-    m = Board.new(form)
+    if u.role == 1:
+        m = Board.new(form)
     return redirect(url_for('topic.index'))
 
