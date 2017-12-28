@@ -72,5 +72,5 @@ def new():
     bs = Board.all()
     return render_template("topic/new.html", bs=bs)
 
-# @main.route("/board/<int:id>")
-# def show_boe
+
+
