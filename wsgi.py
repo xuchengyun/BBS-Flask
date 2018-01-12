@@ -15,7 +15,9 @@ ln -s /var/www/bbs/bbs.conf /etc/supervisor/conf.d/bbs.conf
 
 ln -s /var/www/bbs/bbs.nginx /etc/nginx/sites-enabled/bbs
 
+ln -s /var/www/bbs/mongod.conf /etc/supervisor/conf.d/mongo.conf
 
+ln -s /var/www/bbs/redis-server.conf /etc/supervisor/conf.d/redis.conf
 
 ➜  ~ cat /etc/supervisor/conf.d/bbs.conf
 
@@ -30,5 +32,5 @@ autorestart=true
 
 /usr/local/bin/gunicorn wsgi
 --bind 0.0.0.0:2001
---pid /tmp/飙泪og.pid
+--pid /tmp/blog.pid
 """

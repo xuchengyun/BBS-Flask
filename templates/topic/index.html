@@ -18,7 +18,7 @@
     <div class='navbar-inner'>
         <div class='container'>
             <ul class='nav pull-right'>
-        <li><a href='/'>main page</a></li>
+        <li><a href='/topic'>main page</a></li>
         <li><a href='/profile'>profile</a></li>
       </ul>
       <a class="btn btn-navbar" id="responsive-sidebar-trigger">
@@ -34,7 +34,14 @@
         <div class="panel">
             <div class="inner">
                 <a href="/topic/new" class="create_topic_btn">
-                    <span class="span-success">发布话题</span>
+                    <span class="span-success">Submit a new text post</span>
+                </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="inner">
+                <a href="/mail" class="create_topic_btn">
+                    <span class="span-success">Send message</span>
                 </a>
             </div>
         </div>
@@ -44,7 +51,7 @@
             <div class="header">
                 <a href="/topic"
                    class="topic-tab current-tab">
-                    全部
+                    all
                 </a>
 
                 {% for b in bs %}
@@ -68,7 +75,7 @@
                             </a>
                             <span>{{ t.replies() | count }} / {{ t.views }}</span>
                             <a class="topic_title" href="{{ url_for('topic.delete', id=t.id, token=token) }}">
-                                删除
+                                delete
                             </a>
 
                         </div>

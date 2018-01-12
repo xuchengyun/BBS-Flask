@@ -11,6 +11,7 @@ from flask import (
 
 from models.user import User
 from models.topic import Topic
+from models.board import Board
 from utils import log
 from werkzeug.utils import secure_filename
 from models.user import User
@@ -21,7 +22,7 @@ main = Blueprint('index', __name__)
 
 
 def current_user():
-    # 从 session 中找到 user_id 字段, 找不到就 -1
+    # find user_id from session, if not exist set to -1
     # 然后 User.find_by 来用 id 找用户
     # 找不到就返回 None
     uid = session.get('user_id', -1)
@@ -42,8 +43,9 @@ def current_user():
 @main.route("/")
 def index():
     u = current_user()
+    bs = Board.all()
     ms = Topic.all()
-    return render_template("index.html", user=u, ms=ms)
+    return render_template("index.html", ms=ms, bs=bs)
 
 
 @main.route("/signup")
@@ -110,7 +112,6 @@ def add_img():
 
     if allow_file(file.filename):
         filename = secure_filename(file.filename)
-        print(filename)
         file.save(os.path.join(user_file_director, filename))
         u.user_image = filename
         u.save()
@@ -119,7 +120,7 @@ def add_img():
 
 
 # send_from_directory
-# nginx 静态文件
+# nginx static file
 @main.route("/uploads/<filename>")
 def uploads(filename):
     return send_from_directory(user_file_director, filename)

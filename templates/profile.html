@@ -5,7 +5,7 @@
     <title>profile</title>
 </head>
 <body>
-    <h1>用户资料页面</h1>
+    <h1>user profile</h1>
     <div>
         {{ user.id }}
     </div>
@@ -16,7 +16,7 @@
         {{ user.password }}
     </div>
     <title>Upload new File</title>
-    <h1>Upload new File</h1>
+    <h1>Upload profile picture</h1>
     <form method=post action={{ url_for(".add_img") }} enctype=multipart/form-data>
       <p><input type=file name=file>
          <input type=submit value=Upload>

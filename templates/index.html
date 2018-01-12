@@ -21,7 +21,6 @@
     <div class='navbar-inner'>
         <div class='container'>
             <ul class='nav pull-right'>
-        <li><a href='/'>main page</a></li>
         <li><a href='/signup'>sign up</a></li>
         <li><a href='/signin'>log in</a></li>
 
@@ -40,7 +39,7 @@
             <div class="header">
                 <a href="/topic"
                    class="topic-tab current-tab">
-                    全部
+                    all
                 </a>
 
                 {% for b in bs %}
@@ -64,7 +63,7 @@
                             </a>
                             <span>{{ t.replies() | count }} / {{ t.views }}</span>
                             <a class="topic_title" href="{{ url_for('topic.delete', id=t.id, token=token) }}">
-                                删除
+                                delete
                             </a>
 
                         </div>

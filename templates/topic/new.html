@@ -14,6 +14,21 @@
     <script src="/static/lib/editor/ext.js"></script>
 </head>
 <body>
+<div class='navbar'>
+    <div class='navbar-inner'>
+        <div class='container'>
+            <ul class='nav pull-right'>
+        <li><a href='/topic'>main page</a></li>
+        <li><a href='/profile'>profile</a></li>
+      </ul>
+      <a class="btn btn-navbar" id="responsive-sidebar-trigger">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+    </div>
+  </div>
+</div>
     <div id="main">
         <div id="content">
             <div class="panel">
@@ -22,19 +37,19 @@
     <fieldset>
         <textarea autofocus class='span9' id='title'
                   name='title' rows='1'
-                  placeholder="标题字数 10 字以上"></textarea>
-        <span class="tab-selector">选择版块：</span>
+                  placeholder="title"></textarea>
+        <span class="tab-selector">select board：</span>
         <select name="board_id" id="board" required>
-            <option value="">请选择</option>
+            <option value="">please select</option>
                 {% for b in bs %}
                 <option value="{{ b.id }}">{{ b.title }}</option>
                 {% endfor %}
         </select>
         <div class='markdown_editor in_editor'>
           <div class='markdown_in_editor'>
-            <textarea class='editor' name='content' rows='20' placeholder='文章支持 Markdown 语法, 请注意标记代码'></textarea>
+            <textarea class='editor' name='content' rows='20' placeholder='support markdown'></textarea>
             <div class='editor_buttons'>
-              <input type="submit" class='span-primary submit_btn' data-loading-text="提交中" value="提交">
+              <input type="submit" class='span-primary submit_btn' data-loading-text="submitting..." value="submit">
             </div>
           </div>
         </div>
