@@ -31,3 +31,8 @@ def add():
         m = Board.new(form)
     return redirect(url_for('topic.index'))
 
+
+@main.route("/delete", methods=["POST"])
+def delete():
+    pass
+

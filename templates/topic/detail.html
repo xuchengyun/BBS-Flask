@@ -38,17 +38,17 @@
       	</span>
                 <div class="changes">
             <span>
-                发布于 2 天前
+                submitted {{ (t - topic.created_time)|datetime }} days ago
             </span>
                     <span>
                 author
-                        <span>hopperhuang</span>
+                        <span>{{ u.username }}</span>
         	</span>
                     <span>
           	    clicked {{ topic.views }} times
         	</span>
                     <span>
-                来自 问答
+                from <a href="/topic/?board_id={{ b.id }}">{{ b.title }}</a>
             </span>
                 </div>
             </div>
@@ -73,8 +73,8 @@
         {% for r in topic.replies() %}
         <div class='cell reply_area reply_item'>
             <div class='author_content'>
-                <a href="/user/leiwei1991" class="user_avatar">
-                    <img src="https://avatars2.githubusercontent.com/u/10721874?v=3&amp;s=120"
+                <a  class="user_avatar">
+                    <img src={{ '/uploads/' + r.user().user_image + '?v=3&amp;s=120' }}
                          title="{{ r.user().username }}"/>
                 </a>
                 <div class='user_info'>
@@ -82,7 +82,7 @@
                         {{ r.user().username }}
                     </a>
                     <a class="reply_time">
-                        {{ loop.index }}楼 • 2 天前
+                        floor{{ loop.index }} • {{ (t - r.created_time)|datetime }} days ago
                     </a>
                 </div>
                 <div class='user_action'>
@@ -106,7 +106,7 @@
             <form action="{{ url_for('reply.add') }}" method="post">
                 <input type="hidden" name="topic_id" value="{{ topic.id }}">
                 <textarea name="content"></textarea>
-                <button>添加回复</button>
+                <button>add reply</button>
             </form>
         </div>
     </div>

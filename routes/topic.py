@@ -8,11 +8,9 @@ from flask import (
 )
 
 from routes import *
-
 from models.topic import Topic
 from models.board import Board
-
-
+import time
 main = Blueprint('topic', __name__)
 
 import uuid
@@ -29,16 +27,22 @@ def index():
         ms = Topic.find_all(board_id=board_id)
     token = str(uuid.uuid4())
     u = current_user()
-    csrf_tokens['token'] = u.id
+    if u is not None:
+        csrf_tokens['token'] = u.id
     bs = Board.all()
-    return render_template("topic/index.html", ms=ms, token=token, bs=bs)
+    return render_template("topic/index.html", ms=ms, token=token, bs=bs, u=u)
 
 
 @main.route('/<int:id>')
 def detail(id):
+    t = time.time()
     m = Topic.get(id)
+    bid = m.board_id
+    uid = m.user_id
+    b = Board.find_by(id=bid)
+    u = User.find_by(id=uid)
     # 传递 topic 的所有 reply 到 页面中
-    return render_template("topic/detail.html", topic=m)
+    return render_template("topic/detail.html", topic=m, u=u, b=b, t=t)
 
 
 @main.route("/add", methods=["POST"])

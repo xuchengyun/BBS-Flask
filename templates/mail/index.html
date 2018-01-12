@@ -5,21 +5,36 @@
     <title>Title</title>
 </head>
 <body>
-<p>发送邮件</p>
+<div class='navbar'>
+    <div class='navbar-inner'>
+        <div class='container'>
+            <ul class='nav pull-right'>
+        <li><a href='/topic'>main page</a></li>
+        <li><a href='/profile'>profile</a></li>
+      </ul>
+      <a class="btn btn-navbar" id="responsive-sidebar-trigger">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+    </div>
+  </div>
+</div>
+<p>Send message</p>
 <form method="post" action={{ url_for('.add') }}>
 <input type="text" name="content" placeholder="content">
 <input type="text" name="title" placeholder="title">
-<input type="text" name="to" placeholder="to_id">
-<button type="submit">提交邮件</button>
+<input type="text" name="receiver_id" placeholder="to_id">
+<button type="submit">send</button>
 </form>
 
-<p>收到邮件</p>
+<p>received mails:</p>
 {% for r in receives%}
     <div>
     <a href = {{ url_for(".view", id = r.id) }} > {{ r.title }}</a>
     </div>
 {% endfor %}
-<p>发送的邮件</p>
+<p>sent mails:</p>
 {% for s in sends%}
     <div>
     <a href = {{ url_for(".view", id = s.id) }} > {{ s.title }}</a>

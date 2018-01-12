@@ -17,7 +17,7 @@ main = Blueprint('mail', __name__)
 def add():
     form = request.form
     mail = Mail.new(form)
-    #为了安全
+    # for safety
     mail.set_sender(current_user().id)
     return redirect(url_for(".index"))
 
@@ -34,8 +34,8 @@ def index():
 @main.route("/view/<int:id>")
 def view(id):
     mail = Mail.find(id)
-    #不是你自己收发的，你肯定不能看
-    #不是收的人，那你看了也不会变成已读
+    # you cannot see if it is not sent or received by you
+    # if you are not the receiver, message will not be marked as read
     if current_user().id == mail.receiver_id:
         mail.mark_read()
     if current_user().id in [mail.receiver_id, mail.sender_id]:

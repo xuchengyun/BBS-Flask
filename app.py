@@ -1,6 +1,7 @@
 from flask import Flask
 
 import config
+import time
 
 
 # web framework
@@ -29,6 +30,16 @@ app.register_blueprint(topic_routes, url_prefix='/topic')
 app.register_blueprint(reply_routes, url_prefix='/reply')
 app.register_blueprint(board_routes, url_prefix='/board')
 app.register_blueprint(mail_routes, url_prefix='/mail')
+
+
+#jinja filter
+def format_datetime(value):
+    dt = int(value / 86400)
+    if dt == 0:
+        dt = 1
+    return dt
+
+app.jinja_env.filters['datetime'] = format_datetime
 
 
 # 运行代码

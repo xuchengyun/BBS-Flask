@@ -17,6 +17,10 @@
 <div class='navbar'>
     <div class='navbar-inner'>
         <div class='container'>
+            <ul class="nav pull-left">
+                <li><a href='/topic'>
+                    <img src={{ '/uploads/' + u.user_image + '?v=3&amp;s=12' }}  width="50px" height="30px" title="atian25"/></a></li>
+            </ul>
             <ul class='nav pull-right'>
         <li><a href='/topic'>main page</a></li>
         <li><a href='/profile'>profile</a></li>
@@ -70,6 +74,7 @@
                                  <img src={{ '/uploads/' + t.user().user_image + '?v=3&amp;s=120' }}
                             title="atian25"/>
                             </a>
+                            &nbsp
                             <a class="topic_title" href="{{ url_for('topic.detail', id=t.id) }}">
                                 {{ t.title }}
                             </a>

@@ -5,9 +5,24 @@
     <title>mail</title>
 </head>
 <body>
-<p>收件人id： {{ mail.receiver_id }}</p>
-<p>发件人id： {{ mail.sender_id }}</p>
-<p>内容: {{ mail.content }}</p>
+<div class='navbar'>
+    <div class='navbar-inner'>
+        <div class='container'>
+            <ul class='nav pull-right'>
+        <li><a href='/topic'>main page</a></li>
+        <li><a href='/profile'>profile</a></li>
+      </ul>
+      <a class="btn btn-navbar" id="responsive-sidebar-trigger">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+    </div>
+  </div>
+</div>
+<p>receiver id： {{ mail.receiver_id }}</p>
+<p>sender id： {{ mail.sender_id }}</p>
+<p>content : {{ mail.content }}</p>
 
 </body>
 </html>
