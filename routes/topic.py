@@ -27,11 +27,11 @@ def index():
         ms = Topic.find_all(board_id=board_id)
     token = str(uuid.uuid4())
     u = current_user()
+    bs = Board.all()
     if u is not None:
         csrf_tokens['token'] = u.id
-        bs = Board.all()
         return render_template("topic/index.html", ms=ms, token=token, bs=bs, u=u)
-    return redirect("/")
+    return render_template("index.html", ms=ms, bs=bs)
 
 
 @main.route('/<int:id>')
