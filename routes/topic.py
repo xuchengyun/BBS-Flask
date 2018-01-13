@@ -29,8 +29,9 @@ def index():
     u = current_user()
     if u is not None:
         csrf_tokens['token'] = u.id
-    bs = Board.all()
-    return render_template("topic/index.html", ms=ms, token=token, bs=bs, u=u)
+        bs = Board.all()
+        return render_template("topic/index.html", ms=ms, token=token, bs=bs, u=u)
+    return redirect("/")
 
 
 @main.route('/<int:id>')
