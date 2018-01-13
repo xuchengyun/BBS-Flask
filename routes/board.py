@@ -34,5 +34,13 @@ def add():
 
 @main.route("/delete", methods=["POST"])
 def delete():
-    pass
+    form = request.form
+    title = form.get("title", "")
+    print(title)
+    b = Board.find_by(title=title)
+    u = current_user()
+    if u.role == 1:
+        b.delete()
+    return redirect(url_for('topic.index'))
+
 

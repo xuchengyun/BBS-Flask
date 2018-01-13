@@ -230,7 +230,7 @@ class Mongua(object):
         values = {
             'deleted': True
         }
-        mongua.db[name].update_one(query, values)
+        mongua.db[name].update_one(query, {"$set": values})
         # self.deleted = True
         # self.save()
 

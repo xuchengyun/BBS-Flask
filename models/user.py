@@ -48,7 +48,7 @@ class User(Mongua):
             u = User().new(form)
             # u.from_form(form)
             u.password = u.salted_password(pwd)
-            u.role = 1
+            u.role = 11
             u.user_image = 'default.png'
             u.save()
             return u
