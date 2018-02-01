@@ -69,10 +69,13 @@ def register():
     u = User.register(form)
     if u is not None:
         flash("You have sucessfully signed up")
+        # automatically login
+        session['user_id'] = u.id
+        session.permanent = True
         return redirect(url_for('topic.index'))
     else:
         flash("username is already exist, please try again!")
-        return redirect(url_for('.register'))
+        return redirect(url_for('.signup'))
 
 
 @main.route("/login", methods=['POST'])
