@@ -5,6 +5,7 @@ from flask import (
     url_for,
     Blueprint,
     abort,
+    flash,
 )
 
 from routes import *
@@ -76,6 +77,16 @@ def delete():
 def new():
     bs = Board.all()
     return render_template("topic/new.html", bs=bs)
+
+
+@main.route('/logout')
+def logout():
+    if current_user() is None:
+        flash('You can\'t log out if you weren\'t logged in to start with!')
+    else:
+        session.clear()
+        flash('You were successfully logged out!')
+    return redirect('/signin')
 
 
 
