@@ -69,10 +69,10 @@ def register():
     u = User.register(form)
     if u is not None:
         flash("You have sucessfully signed up")
-        return redirect(url_for('.index'))
+        return redirect(url_for('topic.index'))
     else:
         flash("username is already exist, please try again!")
-        return redirect(url_for('.topic'))
+        return redirect(url_for('.register'))
 
 
 @main.route("/login", methods=['POST'])
