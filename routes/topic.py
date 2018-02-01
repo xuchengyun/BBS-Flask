@@ -57,20 +57,25 @@ def add():
 
 @main.route("/delete")
 def delete():
+
     id = int(request.args.get('id'))
     token = request.args.get('token')
     u = current_user()
-    # 判断 token 是否是我们给的
-    if token in csrf_tokens and csrf_tokens[token] == u.id:
-        csrf_tokens.pop(token)
-        if u is not None:
-            print('删除 topic 用户是', u, id)
-            Topic.delete(id)
-            return redirect(url_for('.index'))
+    if u.roll != 1: # judge if it is administrator
+        # 判断 token 是否是我们给的
+        if token in csrf_tokens and csrf_tokens[token] == u.id:
+            csrf_tokens.pop(token)
+            if u is not None:
+                print('删除 topic 用户是', u, id)
+                Topic.delete(id)
+                return redirect(url_for('.index'))
+            else:
+                abort(404)
         else:
-            abort(404)
+            abort(403)
     else:
-        abort(403)
+        Topic.delete(id)
+        return redirect(url_for('.index'))
 
 
 @main.route("/new")
