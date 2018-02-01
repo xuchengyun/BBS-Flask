@@ -140,7 +140,7 @@ class Mongua(object):
         """
         name = cls.__name__
         # TODO 过滤掉被删除的元素
-        # kwargs['deleted'] = False
+        kwargs['deleted'] = False
         print('kwg', kwargs)
         flag_sort = '__sort'
         sort = kwargs.pop(flag_sort, None)
@@ -159,7 +159,7 @@ class Mongua(object):
         """
         name = cls.__name__
         # TODO 过滤掉被删除的元素
-        # kwargs['deleted'] = False
+        kwargs['deleted'] = False
         flag_sort = '__sort'
         flag_order = '__order'
         sort = kwargs.pop(flag_sort, None)

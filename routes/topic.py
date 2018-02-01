@@ -60,21 +60,24 @@ def delete():
 
     id = int(request.args.get('id'))
     token = request.args.get('token')
+    t = Topic.find_by(id=id)
     u = current_user()
+    print(u.role)
     if int(u.role) != 1: # judge if it is administrator
         # 判断 token 是否是我们给的
         if token in csrf_tokens and csrf_tokens[token] == u.id:
             csrf_tokens.pop(token)
             if u is not None:
                 print('删除 topic 用户是', u, id)
-                Topic.delete(id)
+                t.delete()
                 return redirect(url_for('.index'))
             else:
                 abort(404)
         else:
             abort(403)
     else:
-        Topic.delete(id)
+        print('haha')
+        t.delete()
         return redirect(url_for('.index'))
 
 
