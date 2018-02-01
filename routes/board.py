@@ -36,7 +36,6 @@ def add():
 def delete():
     form = request.form
     title = form.get("title", "")
-    print(title)
     b = Board.find_by(title=title)
     u = current_user()
     if u.role == 1:
