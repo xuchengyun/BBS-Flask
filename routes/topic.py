@@ -61,7 +61,7 @@ def delete():
     id = int(request.args.get('id'))
     token = request.args.get('token')
     u = current_user()
-    if u.role != 1: # judge if it is administrator
+    if int(u.role) != 1: # judge if it is administrator
         # 判断 token 是否是我们给的
         if token in csrf_tokens and csrf_tokens[token] == u.id:
             csrf_tokens.pop(token)
