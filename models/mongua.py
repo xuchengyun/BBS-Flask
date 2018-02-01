@@ -133,6 +133,23 @@ class Mongua(object):
         # return l
         return cls._find()
 
+    @classmethod
+    def ordered_all(cls, **kwargs):
+        """
+        mongo 数据查询
+        """
+        name = cls.__name__
+        # TODO 过滤掉被删除的元素
+        # kwargs['deleted'] = False
+        print('kwg', kwargs)
+        flag_sort = '__sort'
+        sort = kwargs.pop(flag_sort, None)
+        ds = mongua.db[name].find(kwargs)
+        if sort is not None:
+            ds = ds.sort(sort)
+        l = [cls._new_with_bson(d) for d in ds]
+        return l
+
     # TODO, 还应该有一个函数 find(name, **kwargs)
     @classmethod
     def _find(cls, **kwargs):
@@ -142,6 +159,7 @@ class Mongua(object):
         name = cls.__name__
         # TODO 过滤掉被删除的元素
         # kwargs['deleted'] = False
+        print('kwg', kwargs)
         flag_sort = '__sort'
         sort = kwargs.pop(flag_sort, None)
         ds = mongua.db[name].find(kwargs)
