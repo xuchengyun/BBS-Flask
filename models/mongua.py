@@ -150,6 +150,7 @@ class Mongua(object):
         l = [cls._new_with_bson(d) for d in ds]
         return l
 
+
     # TODO, 还应该有一个函数 find(name, **kwargs)
     @classmethod
     def _find(cls, **kwargs):
@@ -159,12 +160,16 @@ class Mongua(object):
         name = cls.__name__
         # TODO 过滤掉被删除的元素
         # kwargs['deleted'] = False
-        print('kwg', kwargs)
         flag_sort = '__sort'
+        flag_order = '__order'
         sort = kwargs.pop(flag_sort, None)
+        order = kwargs.pop(flag_order, None)
         ds = mongua.db[name].find(kwargs)
         if sort is not None:
-            ds = ds.sort(sort)
+            if order == 'reverse':
+                ds = ds.sort(sort, -1)
+            else:
+                ds = ds.sort(sort)
         l = [cls._new_with_bson(d) for d in ds]
         return l
 

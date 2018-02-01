@@ -45,7 +45,7 @@ def current_user():
 def index():
     u = current_user()
     bs = Board.all()
-    ms = Topic.ordered_all(__sort='created_time')
+    ms = Topic.find_all(__sort='created_time', __order='reverse')
     print('ms ', ms)
     if u is not None:
         return redirect(url_for('topic.index'))

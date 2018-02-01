@@ -23,9 +23,9 @@ def index():
     # board_id = 2
     board_id = int(request.args.get('board_id', -1))
     if board_id == -1:
-        ms = Topic.all()
+        ms = Topic.find_all(__sort='created_time', __order='reverse')
     else:
-        ms = Topic.find_all(board_id=board_id)
+        ms = Topic.find_all(board_id=board_id, __sort='created_time', __order='reverse')
     token = str(uuid.uuid4())
     u = current_user()
     bs = Board.all()
