@@ -46,7 +46,10 @@ def index():
     u = current_user()
     bs = Board.all()
     ms = Topic.all()
-    return render_template("index.html", ms=ms, bs=bs, u=u)
+    if u is not None:
+        return redirect(url_for('topic.index'))
+    else:
+        return render_template("index.html", ms=ms, bs=bs, u=u)
 
 
 @main.route("/signup")

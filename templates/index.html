@@ -21,13 +21,15 @@
     <div class='navbar-inner'>
         <div class='container'>
             <ul class="nav pull-left">
-                <p style="color:white;">
-                    {% if u == None %}
-  			        Visitor
-  			        {% else %}
-  			        Welcome  {{ u.username }}
-  			        {% endif %}
-                </p>
+                <li>
+                    <p style="color:white;">
+                        {% if u == None %}
+                        Visitor
+                        {% else %}
+                        Welcome  {{ u.username }}
+                        {% endif %}
+                    </p>
+                </li>
             </ul>
             <ul class='nav pull-right'>
         <li><a href='/signup'>sign up</a></li>
@@ -67,10 +69,14 @@
                                  <img src={{ '/uploads/' + t.user().user_image + '?v=3&amp;s=120' }}
                             title="atian25"/>
                             </a>
-                            &nbsp
+                            &nbsp;
+
+
                             <a class="topic_title" href="{{ url_for('topic.detail', id=t.id) }}">
                                 {{ t.title }}
                             </a>
+                            &nbsp;
+                            &nbsp;
                             <span>{{ t.replies() | count }} / {{ t.views }}</span>
 
                         </div>
