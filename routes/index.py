@@ -130,7 +130,7 @@ def add_img():
         u.user_image = filename
         u.save()
 
-    return redirect(url_for(".profile"))
+    return redirect(url_for(".index"))
 
 
 # send_from_directory
