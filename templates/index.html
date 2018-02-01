@@ -20,6 +20,15 @@
 <div class='navbar'>
     <div class='navbar-inner'>
         <div class='container'>
+            <ul class="nav pull-left">
+                <p style="color:white;">
+                    {% if u == None %}
+  			        Visitor
+  			        {% else %}
+  			        Welcome  {{ u.username }}
+  			        {% endif %}
+                </p>
+            </ul>
             <ul class='nav pull-right'>
         <li><a href='/signup'>sign up</a></li>
         <li><a href='/signin'>log in</a></li>

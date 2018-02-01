@@ -7,6 +7,7 @@ from flask import (
     Blueprint,
     make_response,
     send_from_directory,
+    flash,
 )
 
 from models.user import User
@@ -45,7 +46,7 @@ def index():
     u = current_user()
     bs = Board.all()
     ms = Topic.all()
-    return render_template("index.html", ms=ms, bs=bs)
+    return render_template("index.html", ms=ms, bs=bs, u=u)
 
 
 @main.route("/signup")
@@ -63,7 +64,12 @@ def register():
     form = request.form
     # 用类函数来判断
     u = User.register(form)
-    return redirect(url_for('.index'))
+    if u is not None:
+        flash("You have sucessfully signed up")
+        return redirect(url_for('.index'))
+    else:
+        flash("username is already exist, please try again!")
+        return redirect(url_for('.topic'))
 
 
 @main.route("/login", methods=['POST'])
@@ -72,6 +78,7 @@ def login():
     u = User.validate_login(form)
     if u is None:
         # 转到 topic.index 页面
+        flash('Sorry, we couldn\'t find you in our database, please register first')
         return redirect(url_for('.signin'))
     else:
         # session 中写入 user_id
