@@ -22,6 +22,7 @@ csrf_tokens = dict()
 def index():
     # board_id = 2
     board_id = int(request.args.get('board_id', -1))
+    print('board_id', board_id)
     if board_id == -1:
         ms = Topic.find_all(__sort='created_time', __order='reverse')
     else:
@@ -32,6 +33,7 @@ def index():
     if u is not None:
         csrf_tokens['token'] = u.id
         return render_template("topic/index.html", ms=ms, token=token, bs=bs, u=u)
+    flash('You have to sign in first')
     return redirect('/')
 
 

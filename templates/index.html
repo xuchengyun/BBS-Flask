@@ -31,6 +31,15 @@
                     </a>
                 </li>
             </ul>
+        <ul class="nav pull-left">
+            <li>
+                <a style="color:white;">
+                    {% for message in get_flashed_messages() %}
+                    <p class="text--center" style="color:white;">{{ message }}</p>
+                    {% endfor %}
+                </a>
+            </li>
+        </ul>
             <ul class='nav pull-right'>
         <li><a href='/signup'>sign up</a></li>
         <li><a href='/signin'>log in</a></li>
