@@ -28,7 +28,7 @@ def index():
     send_mail = Mail.find_all(sender_id=u.id)
     received_mail = Mail.find_all(receiver_id=u.id)
 
-    return render_template("mail/index.html", sends= send_mail, receives = received_mail)
+    return render_template("mail/index.html", sends=send_mail, receives = received_mail)
 
 
 @main.route("/view/<int:id>")

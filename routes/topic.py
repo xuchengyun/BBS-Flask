@@ -32,7 +32,7 @@ def index():
     if u is not None:
         csrf_tokens['token'] = u.id
         return render_template("topic/index.html", ms=ms, token=token, bs=bs, u=u)
-    return render_template("index.html", ms=ms, bs=bs)
+    return redirect('/')
 
 
 @main.route('/<int:id>')

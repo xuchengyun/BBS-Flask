@@ -36,9 +36,6 @@
     <div>
         user name: {{ user.username }}
     </div>
-    <div>
-        salted password: {{ user.password }}
-    </div>
     <title>Upload new File</title>
     <h1>Upload profile picture</h1>
     <form method=post action={{ url_for(".add_img") }} enctype=multipart/form-data>
